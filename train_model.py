@@ -7,13 +7,15 @@ mixed_precision.set_global_policy('mixed_float16')
 
 # Print TensorFlow and Keras versions
 print("=====================================")
-print("Is TensorFlow using mixed precision? ", mixed_precision.global_policy().name)
+print("Is TensorFlow using mixed precision? ",
+      mixed_precision.global_policy().name)
 print("TensorFlow version: ", tf.__version__)
 print("Keras version: ", tf.keras.__version__)
 print("=====================================")
 
 # Check if CUDA is available
-print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+print("Num GPUs Available: ", len(
+    tf.config.experimental.list_physical_devices('GPU')))
 
 # Define constants
 IMG_HEIGHT = 224
@@ -73,7 +75,8 @@ model = models.Sequential([
     layers.MaxPooling2D((2, 2)),
     layers.Flatten(),
     layers.Dense(512, activation='relu'),
-    layers.Dense(NUM_CLASSES, activation='softmax', dtype='float32')  # Ensure output is float32
+    layers.Dense(NUM_CLASSES, activation='softmax',
+                 dtype='float32')  # Ensure output is float32
 ])
 
 # Compile the model
@@ -107,3 +110,9 @@ plt.show()
 print("Training complete. Saving the model...")
 model.save('emotion_classification_model.keras')
 print("Model saved successfully.")
+
+# Attempt to save the model as a h5 file
+print("=====================================")
+print("Saving model as an HDF5 file")
+model.save('model.h5')
+print("Model saved successfully as an HDF5 file.")

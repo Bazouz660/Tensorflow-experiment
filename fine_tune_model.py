@@ -1,9 +1,9 @@
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+from tensorflow import keras
 import matplotlib.pyplot as plt
 
 # Load the saved model
-model = load_model('emotion_classification_model.keras')
+model = keras.saving.load_model('emotion_classification_model.keras')
 
 # Print TensorFlow and Keras versions
 print("=====================================")
@@ -13,7 +13,8 @@ print("Keras version: ", tf.keras.__version__)
 print("=====================================")
 
 # Check if CUDA is available
-print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+print("Num GPUs Available: ", len(
+    tf.config.experimental.list_physical_devices('GPU')))
 
 # Define constants for fine-tuning
 IMG_HEIGHT = 224
